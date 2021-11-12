@@ -38,7 +38,7 @@ if($error){ $classes .= 'border-red-300'; }
 
                 @else
 
-                    <option value="{{ $key }}"> {{ $label->$field }} </option>
+                    <option value="{{ $label->id }}"> {{ $label->$field }} </option>
 
 
                 @endif
