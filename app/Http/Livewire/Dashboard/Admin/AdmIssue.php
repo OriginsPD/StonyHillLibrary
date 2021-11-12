@@ -93,23 +93,29 @@ class AdmIssue extends Component
 
         $currentIssues = BorrowedBook::all();
 
-         $currently = new DateTime("now");
+        $currently = new DateTime("now");
 
 
-        foreach ($currentIssues as $currentIssue ){
+        foreach ($currentIssues as $currentIssue) {
 
             $dateDue = new DateTime($currentIssue->due_date);
 
 
+            if ($currentIssue->status) {
 
-            if( date_diff($dateDue,$currently)->format('%R%a') >= "-14"){
 
-                BorrowedBook::where('id',$currentIssue->id)
-                    ->update([
-                        'over_due' => 1,
-                    ]);
+                if( date_diff($dateDue,$currently)->format('%R%a') >= "-14"){
+
+                    BorrowedBook::where('id',$currentIssue->id)
+                        ->update([
+                            'over_due' => 1,
+                        ]);
+
+                }
+
 
             }
+
         }
 
     }
