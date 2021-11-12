@@ -101,7 +101,7 @@ class AdmIssue extends Component
             $dateDue = new DateTime($currentIssue->due_date);
 
 
-            if ($currentIssue->status) {
+            if (!$currentIssue->status) {
 
 
                 if( date_diff($dateDue,$currently)->format('%R%a') >= "-14"){
