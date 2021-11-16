@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\BookDetailController;
+use App\Http\Controllers\API\BorrowedBookController;
 use App\Http\Controllers\API\MemberController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('/member', MemberController::class);
 Route::resource('/BookDetail', BookDetailController::class);
+Route::resource('/BorrowedBook', BorrowedBookController::class);
