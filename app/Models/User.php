@@ -2,21 +2,27 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\DatabaseNotification;
+use Illuminate\Notifications\DatabaseNotificationCollection;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+//use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\HasApiTokens;
+use Laravel\Sanctum\PersonalAccessToken;
 
 /**
  * App\Models\User
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\BorrowedBook[] $borrowedBook
+ * @property-read Collection|BorrowedBook[] $borrowedBook
  * @property-read int|null $borrowed_book_count
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read DatabaseNotificationCollection|DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-write mixed $password
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read Collection|PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
@@ -60,7 +66,7 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($value): string
     {
-        return $this->attributes['password'] = bcrypt($value);
+        return $this->attributes['password'] = Hash::make($value);
     }
 
     public function borrowedBook(): HasMany

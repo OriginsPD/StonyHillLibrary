@@ -26,16 +26,16 @@ class BookDetail extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'isbn',
-        'title',
-        'author',
-        'genre_id',
-        'page_no',
-        'category_id',
-        'description',
-        'quantity',
-        'encoded_by',
-        'date_encoded'
+            'isbn',
+            'title',
+            'author',
+            'genre_id',
+            'page_no',
+            'category_id',
+            'description',
+            'quantity',
+            'encoded_by',
+            'date_encoded'
     ];
 
     public function genre(): BelongsTo

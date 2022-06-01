@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\BookDetail;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -14,11 +15,11 @@ class BookDetailController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return BookDetail[]|Collection
+     * @return string
      */
-    public function index(): Collection|array
+    public function index(): string
     {
-        return BookDetail::all();
+        return BookDetail::with('genre')->get();
     }
 
     /**

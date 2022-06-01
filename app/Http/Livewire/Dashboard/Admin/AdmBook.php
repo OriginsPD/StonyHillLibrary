@@ -5,9 +5,7 @@ namespace App\Http\Livewire\Dashboard\Admin;
 use App\Models\BookDetail;
 use App\Models\Category;
 use App\Models\Genre;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -24,6 +22,7 @@ class AdmBook extends Component
     protected $listeners = ['refresh' => 'mount'];
 
     public bool $newCategory = false;
+
 
     protected array $rules = [
         'detail.isbn' => 'required',
@@ -199,12 +198,26 @@ class AdmBook extends Component
         $this->detail = new BookDetail;
         $this->category = new Category;
         $this->genre = new Genre;
+
     }
 
-    public function render(): Factory|View|Application
+    public function callback()
     {
+        return redirect()->route('redirect');
+    }
+
+    public function render()
+    {
+
+        $http_response_header = Http::get('http://10.44.16.67:7000/api/member')->json();
+
+        if ($http_response_header === null) {
+           $this->callback();
+        }
+//        BookDetail::with('genre')->paginate(5)
+
         return view('livewire.dashboard.admin.adm-book', [
-            'books' => BookDetail::with('genre')->paginate(5),
+            'books' => $http_response_header,
             'categories' => Category::all(),
             'genres' => Genre::all()
         ])

@@ -8,6 +8,6 @@ class CreateClients extends Component
 {
     public function render()
     {
-        return view('livewire.dashboard.admin.create-clients');
+        return view('livewire.dashboard.admin.create-clients')->extends('layouts.admin');
     }
 }

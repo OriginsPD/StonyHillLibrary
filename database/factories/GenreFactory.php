@@ -14,7 +14,7 @@ class GenreFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'genre_type' => $this->faker->name,
         ];
     }
 }

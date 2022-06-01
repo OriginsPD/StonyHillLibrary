@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Auth;
 
 use App\Models\User;
 use Livewire\Component;
+use OAuth;
 
 class Login extends Component
 {
     public User $user;
     public $password;
+
 
     protected array $rules = [
         'user.email' => 'required|email',

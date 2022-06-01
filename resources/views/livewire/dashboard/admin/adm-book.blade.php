@@ -67,6 +67,7 @@
 
                     @forelse($books as $book)
 
+
                         <x-table.row>
 
                             <x-table.cell> {{ $book->isbn }} </x-table.cell>
@@ -118,11 +119,11 @@
 
                 </x-table>
 
-                <div class="p-4">
+    {{--                <div class="p-4">--}}
 
-                    {{ $books->links() }}
+    {{--                    {{ $books->links() }}--}}
 
-                </div>
+    {{--                </div>--}}
 
 
             <div x-data="{ isModal: false }"

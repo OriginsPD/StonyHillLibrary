@@ -24,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/member', MemberController::class);
 Route::resource('/BookDetail', BookDetailController::class);
 Route::resource('/BorrowedBook', BorrowedBookController::class);
+
+
